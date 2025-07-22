@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae - Diego Enrique Miguel Rathmann</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 85%;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #3498db;
+        }
+        h2 {
+            font-size: 1.8em;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: #333;
+            margin-top: 25px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section p {
+            margin: 5px 0;
+        }
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .section ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .section ul li:before {
+            content: '•';
+            color: #3498db;
+            position: absolute;
+            left: 0;
+        }
+        .experience-item {
+            margin-bottom: 20px;
+            border-left: 4px solid #95a5a6;
+            padding-left: 15px;
+        }
+        .experience-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        .experience-item span {
+            font-style: italic;
+            color: #555;
+        }
+        .details-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .details-list div {
+            padding: 5px 0;
+        }
+        .details-list strong {
+            width: 120px;
+            display: inline-block;
+            color: #2c3e50;
+        }
+
+        /* --- NUEVAS CLASES PARA LA ESTRUCTURA DE LA FILA DE CONTACTO E IMAGEN --- */
+        .personal-info-row {
+            display: flex; /* Permite que los elementos internos se coloquen en fila */
+            justify-content: space-between; /* Espacio entre las columnas */
+            align-items: flex-start; /* Alinea los elementos al inicio de la fila */
+            gap: 20px; /* Espacio entre las columnas */
+            flex-wrap: wrap; /* Permite que las columnas se envuelvan en pantallas pequeñas */
+        }
+
+        .contact-details-col {
+            flex: 2; /* Ocupa más espacio que la columna de la imagen */
+            min-width: 300px; /* Ancho mínimo para la columna de detalles */
+        }
+
+        .image-col {
+            flex: 1; /* Ocupa menos espacio */
+            display: flex;
+            justify-content: center; /* Centra la imagen horizontalmente */
+            align-items: flex-start; /* Alinea la imagen al inicio verticalmente */
+            min-width: 150px; /* Ancho mínimo para la columna de la imagen */
+        }
+
+        .profile-pic {
+            max-width: 100%; /* Asegura que la imagen no se desborde */
+            height: auto; /* Mantiene la proporción de la imagen */
+            border-radius: 8px; /* Opcional: bordes redondeados para la imagen */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Opcional: sombra para la imagen */
+        }
+        /* --- FIN NUEVAS CLASES --- */
+
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Alinea items a la izquierda */
+            margin-bottom: 30px;
+            padding-left: 0; /* No necesitamos padding aquí si el padre ya tiene buen layout */
+        }
+        .contact-info p, .contact-info .contact-link {
+            margin: 5px 0;
+            font-size: 1.1em;
+            width: 100%; /* Asegura que los párrafos tomen el ancho completo disponible */
+            text-align: left; /* Asegura que el texto dentro del párrafo esté a la izquierda */
+        }
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        .contact-info .friend-link-container {
+            width: 100%; /* Asegura que el contenedor del enlace del amigo ocupe todo el ancho */
+            margin-top: 5px;
+        }
+        .contact-info .friend-link-container a {
+            display: block; /* Hace que el enlace sea un bloque para que ocupe todo el ancho */
+            padding: 5px 0;
+        }
+        .skill-category {
+            margin-bottom: 15px;
+        }
+        .skill-category strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        .skill-category ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .seminars-list {
+            columns: 2;
+            -webkit-columns: 2;
+            -moz-columns: 2;
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+            .seminars-list {
+                columns: 1;
+                -webkit-columns: 1;
+                -moz-columns: 1;
+            }
+            .personal-info-row {
+                flex-direction: column; /* Apila las columnas en pantallas pequeñas */
+            }
+            .contact-details-col, .image-col {
+                min-width: unset; /* Quita el ancho mínimo para mejor responsividad */
+                width: 100%; /* Ocupa todo el ancho disponible */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CURRICULUM VITAE</h1>
+
+        <div class="section">
+            <h2>Datos Personales</h2>
+            <div class="personal-info-row">
+                <div class="contact-details-col">
+                    <div class="details-list">
+                        <div><strong>Apellido:</strong> RATHMANN</div>
+                        <div><strong>Nombre:</strong> DIEGO</div>
+                        <div><strong>DNI Arg.:</strong> 21.828.315</div>
+                        <div><strong>NIE Esp.:</strong> x4775995e</div>
+                        <div><strong>Fecha de Nacimiento:</strong> 23/11/1970</div>
+                        <div><strong>Ciudadanía:</strong> ITALIANA</div>
+                    </div>
+                    <p><strong><br></strong>
+                    <div class="contact-info">
+                        <p><strong>Público: +34 871 160 747 </strong> </p>
+                        <p><strong>Móvil 1:</strong> +54 9 221 536 0122</p>
+                        <p><strong>Móvil 2:</strong> +34 643 39 55 30</p>
+                        <p><strong>Móvil 3:</strong> +34 651 82 60 97</p>
+                        <p><strong>email:</strong> <a href="mailto:rathmann@hotmail.com">rathmann@hotmail.com</a></p>
+                        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/diegorathmann/" target="_blank">www.linkedin.com</a></p>
+                        <div class="friend-link-container">
+                            <p><strong>Link de un amigo:</strong> <a href="https://aancos.com/" target="_blank">Enlace de mi amigo</a></p>
+                        </div>
+                        <p><strong><br></strong>
+                        <p><strong>Domicilio 1:</strong> La Plata, Buenos Aires - ARGENTINA </p>
+                        <p><strong>Domicilio 2:</strong> Palma de Mallorca - ESPAÑA </p>
+                    </div>
+                </div>
+                <div class="image-col">
+                    <img src="index_archivos/image001.jpg" alt="Foto de perfil" class="profile-pic">
+                    
+                    </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Formación Académica</h2>
+            <p><strong>Título:</strong> INGENIERO EN SISTEMAS DE INFORMACIÓN</p>
+            <p>Facultad Tecnológica Nacional Regional La Plata – Argentina</p>
+        </div>
+
+        <div class="section">
+            <h2>Especialización e Idiomas</h2>
+            <div class="contact-info">
+                <div><strong>Especialidad:</strong>  Desarrollo – Secure Code Analyst</div>
+                <div><strong>FUNCIONAL SAP:</strong>  PI/PO - BPM - ABAP (FI – SD - MM)</div>
+                <div><strong>Integrador:</strong>  sFTP - Idoc – Soap WS – Api Rest</div>
+                <div><strong>Idiomas:</strong>  Español Nativo – Italiano – Inglés B</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Experiencia Profesional</h2>
+
+            <div class="experience-item">
+                <strong>España (11/2024 – Mayo 2025) - ANALISTA INTEGRADOR y DESARROLLO – ABAP – SAP PI/PO</strong>
+                <span>Asetir S.L. – Integrador Interfaces con Olap</span>
+                <ul>
+                    <li>Integrador de Interfaces Olap</li>
+                    <li>Desarrollo</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <strong>Argentina (01/2022 – 10/2024) - ANALISTA FUNCIONAL y DESARROLLO – Administrador SONARQUBE</strong>
+                <span>CORREO OFICIAL DE LA REPUBLICA ARGENTINA SA, Buenos Aires</span>
+                <ul>
+                    <li>ABAP – SAP PI/PO – IDOC -ALV -SmartForms BPMN - SAP FI (GL-AP-AR-AA)</li>
+                    <li>Modelado de Procesos de Negocios</li>
+                    <li>Modelado de Negocio</li>
+                    <li>Analista Programador</li>
+                    <li>Análisis de problemática, reuniones con usuarios, propuesta de solución, modelado y simulación, planificación y Seguimiento en producción. Entrenamiento a desarrolladores.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <strong>España (02/2021 – 05/2021) - DESARROLLO</strong>
+                <span>ALC informática para su cliente InterSport</span>
+                <ul>
+                    <li>.Net Core / SqlServer / MVC - EF / Web Api / TDD / SourceTree-Jira/Power BI</li>
+                    <li>Participación en el Desarrollo y Diseño del Módulo de gestión de Clientes.</li>
+                    <li>Publicación de servicios, Testeo y puesta en producción.</li>
+                    <li>Desarrollo de Interfaces</li>
+                    <li>Diseño de APIs, publicación interna entre sucursales, según distintas problemáticas como manejo de stock, facturación y compras.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <strong>España (06/2021-12/2021) - DESARROLLO</strong>
+                <span>Ministerio de Industria, Comercio y Turismo a través de Indra-Arelance en Asp.Net Core</span>
+                <ul>
+                    <li>Desarrollado con Web services interfaceados con SAP Pi 7.1</li>
+                    <li>Desarrollo de Web Services</li>
+                    <li>Diseño de Interfaces Soap WS entre ministerios y empresas particulares, Confección de Documentación.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <strong>Argentina (06/2006 – 01/2021) - ANALISTA – SAP</strong>
+                <span>CORREO OFICIAL DE LA REPUBLICA ARGENTINA SA, Buenos Aires</span>
+                <ul>
+                    <li>Responsable de SAP xi/pi po (BPM) - Enterprise Portal – requerimientos sobre Fiscalización</li>
+                    <li>Interfaz RFC – SOAP y non Sap entre módulos HCM y Ms SqlServer / PL Sql-Oracle</li>
+                    <li>Desarrollo de sistema Libro iva y caja, clientes medios, gastos menores, etc. Microsoft Visual Studio / Ms Stored Procedures</li>
+                    <li>Analista Programador</li>
+                    <li>Mantenimiento de interfaces existentes</li>
+                    <li>Modificación de mapeos según requerimientos nuevos</li>
+                    <li>Resolución de incidencias en producción</li>
+                    <li>Reporte de mejoras</li>
+                    <li>Análisis y diseño de integraciones nuevas para base de datos MS SQL Olap</li>
+                    <li>Análisis de Requerimientos, Diseño de soluciones basadas en las herramientas de SAP PI, interrelación con distintos grupos de usuarios, puesta en marcha de soluciones integrales interdepartamentales. Participación en la Instalación de SAP PI y sus actualizaciones. Adaptación de Procesos empresariales existentes a nuevas alternativas mediante el uso de interfaces automáticas.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <strong>Italia (11/2003 – 04/2005) - DESARROLLO</strong>
+                <span>FIDA S.R.L., Brugherio, Milano <a href="http://www.fida.it" target="_blank">www.fida.it</a></span>
+                <ul>
+                    <li>Integración aplicativo Visual Basic – CRM</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <strong>España (11/2002 – 09/2003) - ANÁLISIS Y DISEÑO</strong>
+                <span>TOOLFACTORY S. L., Plaza Mayor, 1 Palma de Mallorca para sus clientes:</span>
+                <ul>
+                    <li><a href="http://www.iberostar.es" target="_blank">www.iberostar.es</a> (Visual Basic - ASP – XML -SQL Server)</li>
+                    <li><a href="http://www.solplan.es" target="_blank">www.solplan.es</a> (J2EE – JDeveloper – ORACLE)</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <strong>Otros Trabajos en Argentina - DISEÑO FUNCIONAL SENIOR</strong>
+                <span>TPS S.A. Consultora en Sistemas - Av. Córdoba 1381, Buenos Aires para sus clientes:</span>
+                <ul>
+                    <li>MEDICUS (LINUX-PL/SQL Oracle-Visual Basic)</li>
+                    <li>BANCO RIO (NT- PL/SQL Oracle-JSP).</li>
+                    <li>BANCO GALICIA (NT- TSQL).</li>
+                    <li>EDEA (NT-Transact SQL - VB 6).</li>
+                    <li>AYLING MARSHAL (NT-SQL -VISUAL INTERDEV-ASP).</li>
+                    <li>EDESUR (NT-VBA-INFORMIX (solo consultas)).</li>
+                    <li>IMPSAT S.A. (NT-ORACLE-JAVA-JSP-JavaScript).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Habilidades Técnicas</h2>
+            <div class="skill-category">
+                <strong>Experiencia en el uso de herramientas y componentes de SAP PI, como:</strong>
+                <ul>
+                    <li>Integration Repository (IR): Diseño y desarrollo de interfaces, procesos y mapeos.</li>
+                    <li>Integration Directory (ID): Configuración de escenarios de integración.</li>
+                    <li>Integration Server (IS): Procesamiento centralizado de mensajes.</li>
+                    <li>SLD.</li>
+                    <li>Adapter Engine: Uso de adaptadores estándar como PROXY, IDOC, FILE, SOAP, JDBC para conectar sistemas SAP y no SAP.</li>
+                    <li>Conocimientos en transformación y enrutamiento de datos mediante mapeos UDF y Java.</li>
+                    <li>Familiaridad con protocolos y estándares de comunicación como Web Service Description Language y API REST.</li>
+                    <li>Monitorización y resolución de problemas en tiempo real utilizando herramientas como Central Monitoring.</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <strong>Habilidades Analíticas:</strong>
+                <ul>
+                    <li>Capacidad para analizar las necesidades de integración de sistemas empresariales y diseñar soluciones eficaces.</li>
+                    <li>Experiencia en la optimización de procesos empresariales mediante la automatización e integración fluida entre aplicaciones.</li>
+                    <li>Resolución de tickets.</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <strong>Habilidades Blandas:</strong>
+                <ul>
+                    <li>Colaboración con equipos técnicos y de negocio para garantizar una integración sin problemas.</li>
+                    <li>Documentación clara y precisa de procesos y soluciones técnicas.</li>
+                    <li>Capacidad para entrenar a usuarios finales sobre los sistemas integrados.</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <strong>Experiencia adicional en Implementaciones:</strong>
+                <ul>
+                    <li>Participación en la implementación de 7.0 dual stack</li>
+                    <li>7.11</li>
+                    <li>7.4</li>
+                    <li>7.5 java only.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Otros Títulos y Certificaciones</h2>
+            <ul>
+                <li>Jira Work Management / Confluence</li>
+                <li>PROGRAMACION AVANZADA SQL Server en Microsoft T.C. La Plata Arg.</li>
+                <li>ADMINISTRADOR WINDOWS NT en Microsoft T.C. La Plata Arg.</li>
+                <li>Administración de Oracle 10G en Oracle Arg.</li>
+                <li>PROGRAMACIÓN AVANZ. EN VB/ T-SQL en Microsoft T.C. La Plata Arg.</li>
+                <li>Programación Avanzada ABAP en CurSap Bs. As. Arg.</li>
+                <li>TBIT40-41-42-43-44 Exchange Infrastructure</li>
+                <li>TEP10 SAP Enterprise Portal Implementation</li>
+                <li>TCRM10 Customer Relationship Management en Academia Sap Official - Bs. As. Arg.</li>
+                <li>NWDS in Company</li>
+                <li>ARIS in Company</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Seminarios (Mención de los más destacables)</h2>
+            <ul class="seminars-list">
+                <li>Organización y Manejo de un Centro de Cómputos; UCLA - Bs. As. Arg.</li>
+                <li>Motivaciones en R.R.H.H. ; U.N.L.P. La Plata Arg.</li>
+                <li>Utilidades XML ; F.R.L.P. La Plata Arg.</li>
+                <li>Organización y Motivación de Recursos Humanos; U.N.L.P. La Plata Arg.</li>
+                <li>Administrador de Recursos Informáticos; F.R.L.P. La Plata Arg.</li>
+                <li>Programación .Net; Microsoft España</li>
+                <li>UML; Sun España</li>
+                <li>Auditoria Informática; U.N.L.P. La Plata Arg.</li>
+                <li>PMI; F.R.B.S. Bs. As. Arg.</li>
+                <li>Reporting y Dicc. de Datos; CurSap Bs. As. Arg.</li>
+                <li>Sharepoint Server with Project Server; Correo Arg. Bs.As Arg.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Estudios Complementarios</h2>
+            <p><strong>UTILITARIOS:</strong> WINDOWS 365, LINUX, .Net, Asp.net, Win Forms, VB 6.0, VBA, Git, HTML, Css, XML, JWS, Azure Implements, Jira tools, JavaScript, JAVA Se, J2ee, TRANSAC SQL, PL/SQL ORACLE, Forms y Reports, jDEVELOPER, ERWIN, Visual MODELER, UML Modeling, Power BI, Unit Test.</p>
+            <p><strong>Arquitectura:</strong> TDD</p>
+        </div>
+
+        <div class="section">
+            <h2>Ciberseguridad</h2>
+            <ul>
+                <li>Análisis de Código Seguro – UTN Bs.As.</li>
+                <li>SonarQube / OWASP</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Especificaciones SAP</h2>
+            <ul>
+                <li>SAP FI (Fiori)</li>
+                <li><strong>ABAP Workbench:</strong> Packages and Transactions, Working with Structures and Internal Tables</li>
+                <li><strong>Diccionario de Datos:</strong> Tablas, Vistas, Relaciones, Índices, Cardinalidad, etc.</li>
+                <li><strong>Programación Avanzada ABAP:</strong> Procesamiento de cadenas de caracteres en formato UNICODE, Dynamic programming with field symbols and references under aspects of performance</li>
+                <li><strong>Reporting:</strong> Administración, Programación de listas interactivas, uso del control ALV, etc.</li>
+                <li><strong>Programación de Diálogos:</strong> Despliegue de la interfase de usuario y Objetos de pantalla (atributos, instrumentación y procesamiento)</li>
+                <li><strong>Transferencia de Datos:</strong> Procedimientos de transferencia, Monitor de ingreso de lote, Batch input, Transferencia de datos usando BAPI's, y Bases de la interfaz doc.</li>
+                <li><strong>Interfaces de comunicación:</strong> RFC (Remote Function Call) Interface & BAPI's.</li>
+            </ul>
+            <h3>Exchange Infrastructure (NETWEAVER/ XI-PI) Dictado por SAP</h3>
+            <ul>
+                <li>TBIT 40 : IMPLEMENTATION & OPERATION</li>
+                <li>TBIT 41 : MAPPING EDITOR & IDOCS</li>
+                <li>TBIT 42 : ADAPTAERS OVERVIEW</li>
+                <li>TBIT 43 : BUSINESS PROCESS MANAGEMENT</li>
+                <li>TBIT 44 : MAPPING PATTERNS</li>
+                <li>TBIT 51 : IMPLEMENTATION & OPERATION</li>
+            </ul>
+            <h3>SAP CRM</h3>
+            <ul>
+                <li>CR100, TCRM10, TCRM20</li>
+            </ul>
+            <h3>TEP10 Implementation and Operation of SAP NetWeaver PORTAL</h3>
+            <ul>
+                <li>+Ja100 SAP J2SE Fundamentals - Dictado por Tecknoda</li>
+                <li>+Ja300 SAP J2EE Fundamentals Dictado por Grupo Assa</li>
+                <li>+Ja310 SAP JAVA Web Dynpro Dictado por Grupo Assa</li>
+                <li>+Ja312 SAP Advanced JAVA Web Dynpro for J2EE on NWDS / JCo Connectors & Model</li>
+            </ul>
+            <h3>SAP FI</h3>
+            <ul>
+                <li>SAP FI 01 – Dictado por CVOSoft</li>
+                <li>SAP FI 02 – Dictado por CVOSoft</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Logros Destacados</h2>
+            <ul>
+                <li><strong>Implementación de escenarios de integración empresarial:</strong> Desarrollo exitoso de escenarios de integración utilizando SAP PI para conectar sistemas internos y externos (A2A y B2B), optimizando la comunicación entre departamentos y mejorando la eficiencia operativa mediante la orquestación de procesos.</li>
+                <li><strong>Automatización de procesos con SAP PI/PO:</strong> Diseño y configuración de procesos automatizados utilizando herramientas avanzadas como ccBPM.</li>
+                <li><strong>Transformación y enrutamiento de datos:</strong> Configuración avanzada de adaptadores como FILE, SOAP y JDBC para transformar mensajes XML y JSON, garantizando el correcto enrutamiento entre sistemas emisores y receptores.</li>
+                <li><strong>Optimización del flujo de trabajo:</strong> Desarrollo de workflows personalizados para procesos críticos utilizando SAP NetWeaver, mejorando la trazabilidad y gestión de tareas dentro del entorno empresarial.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Investigaciones Técnicas Realizadas</h2>
+            <ul>
+                <li><strong>Estudio sobre escenarios reales en SAP PI:</strong> Investigación aplicada sobre diseño y configuración de escenarios como lectura de ficheros desde directorios, procesamiento mediante RFC, y transformación avanzada de datos en entornos productivos.</li>
+                <li><strong>Análisis metodológico de integración empresarial:</strong> Aplicación experimental del método ASAP para la implementación eficiente de sistemas ERP SAP, evaluando costos, tiempos estándar y optimización de recursos.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
